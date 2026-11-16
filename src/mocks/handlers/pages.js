@@ -3,6 +3,7 @@ import { http, HttpResponse } from 'msw';
 import { findInvoice, invoicesOf, openInvoice, PAID, payInvoice, toInvoice } from '../data/invoices';
 import { notify } from '../data/notifications';
 import { CATEGORIES, findService, servicesOfCategory } from '../data/services';
+import { buildInvoicePdf } from '../invoicePdf';
 import { feed } from '../data/feed';
 import { pipelinesOf } from '../data/trusts';
 import { API, errorResponse, notFound, paginate, readJson, withAuth } from './utils';
@@ -101,6 +102,57 @@ const payPayment = http.post(
     }),
 );
 
+// --- Invoices ---
+
+const unique = (values) => [...new Set(values)];
+
+// The table: search by invoice id or service name, "designation" – the service the invoice is for,
+// status. The two selects of the page are filled from `filters`, which always cover all invoices
+// of the customer (not only the filtered ones). Column sorting happens in the browser.
+const getInvoices = http.get(
+    `${API}/invoices/`,
+    withAuth(({ request, user }) => {
+        const params = new URL(request.url).searchParams;
+        const search = (params.get('search') || '').trim().toLowerCase();
+        const designation = params.get('designation') || '';
+        const status = params.get('status') || '';
+        const all = invoicesOf(user);
+
+        const found = all.filter(
+            (invoice) =>
+                (!search || String(invoice.invoice_id).includes(search) || invoice.service.name.toLowerCase().includes(search)) &&
+                (!designation || String(invoice.service.service_id) === designation) &&
+                (!status || invoice.status === status),
+        );
+
+        return HttpResponse.json({
+            ...paginate(
+                found.map(({ service, ...invoice }) => ({ ...invoice, designation: service.name })),
+                params.get('page'),
+                params.get('page_size'),
+            ),
+            filters: {
+                designation: unique(all.map((invoice) => invoice.service.service_id)).map((id) => ({
+                    name: findService(id).service.name,
+                    value: String(id),
+                })),
+                status: unique(all.map((invoice) => invoice.status)).map((name) => ({ name, value: name })),
+            },
+        });
+    }),
+);
+
+// The original answered with a public link to a ready file; here the PDF is built on the spot.
+const getInvoicePdf = http.get(
+    `${API}/invoices/:id/pdf/`,
+    withAuth(({ params, user }) => {
+        const invoice = findInvoice(user, params.id);
+        if (!invoice) return notFound('Invoice not found.');
+        return HttpResponse.json({ file_public_url: URL.createObjectURL(buildInvoicePdf(toInvoice(invoice), user)) });
+    }),
+);
+
 export const pagesHandlers = [
-    getFeed, getTrustPipeline, getCategories, getServices, getPurchased, buyService, getPayment, payPayment,
+    getFeed, getTrustPipeline, getCategories, getServices, getPurchased,
+    getInvoices, getInvoicePdf, buyService, getPayment, payPayment,
 ];
