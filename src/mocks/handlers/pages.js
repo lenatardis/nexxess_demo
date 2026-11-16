@@ -1,8 +1,11 @@
 // Page endpoints used by src/api/pagesApi.js.
 import { http, HttpResponse } from 'msw';
+import { findInvoice, invoicesOf, openInvoice, PAID, payInvoice, toInvoice } from '../data/invoices';
+import { notify } from '../data/notifications';
+import { CATEGORIES, findService, servicesOfCategory } from '../data/services';
 import { feed } from '../data/feed';
 import { pipelinesOf } from '../data/trusts';
-import { API, paginate, withAuth } from './utils';
+import { API, errorResponse, notFound, paginate, readJson, withAuth } from './utils';
 
 const FEED_PAGE_SIZE = 3;
 
@@ -23,4 +26,81 @@ const getTrustPipeline = http.get(
     }),
 );
 
-export const pagesHandlers = [getFeed, getTrustPipeline];
+// --- Catalogue and purchases ---
+
+// As many cards per page as the pages show skeletons.
+const SERVICES_PAGE_SIZE = 6;
+const PURCHASES_PAGE_SIZE = 3;
+
+// [0] – packages, [1] – trusts: the two catalogue pages take their category from this order.
+const getCategories = http.get(
+    `${API}/services/categories/`,
+    withAuth(() => HttpResponse.json({ count: CATEGORIES.length, total_pages: 1, results: CATEGORIES })),
+);
+
+const getServices = http.get(
+    `${API}/services/`,
+    withAuth(({ request }) => {
+        const params = new URL(request.url).searchParams;
+        return HttpResponse.json(
+            paginate(servicesOfCategory(params.get('bitrix_category')), params.get('page'), SERVICES_PAGE_SIZE),
+        );
+    }),
+);
+
+// Paid invoices, newest first. The first page also feeds "Your Services" of the right box.
+const getPurchased = http.get(
+    `${API}/services/purchased/`,
+    withAuth(({ request, user }) => {
+        const purchases = invoicesOf(user)
+            .filter((invoice) => invoice.status === PAID)
+            .map(({ invoice_id, bought_time, service }) => ({ invoice_id, bought_time, purchased_services: [service] }));
+        return HttpResponse.json(paginate(purchases, new URL(request.url).searchParams.get('page'), PURCHASES_PAGE_SIZE));
+    }),
+);
+
+// --- Buying (the original sent the customer to a payment provider) ---
+
+// The payment page of the demo lives inside the app; the frontend goes there with window.location.
+const paymentUrl = (invoiceId) => `${window.location.origin}${process.env.PUBLIC_URL}/demoPayment?invoice=${invoiceId}`;
+
+const buyService = http.post(
+    `${API}/invoices/`,
+    withAuth(async ({ request, user }) => {
+        const { service_id } = await readJson(request);
+        if (!findService(service_id)) {
+            return errorResponse(400, 'does_not_exist', 'Service not found.', 'service_id');
+        }
+        const invoice = openInvoice(user, service_id);
+        return HttpResponse.json(
+            { invoice_id: invoice.invoice_id, transaction_url: paymentUrl(invoice.invoice_id) },
+            { status: 201 },
+        );
+    }),
+);
+
+// Demo only (src/api/pagesApi.js → getDemoPayment, payDemoInvoice): what the payment page shows, and "Pay".
+const getPayment = http.get(
+    `${API}/invoices/:id/payment/`,
+    withAuth(({ params, user }) => {
+        const invoice = findInvoice(user, params.id);
+        return invoice ? HttpResponse.json(toInvoice(invoice)) : notFound('Invoice not found.');
+    }),
+);
+
+const payPayment = http.post(
+    `${API}/invoices/:id/payment/`,
+    withAuth(({ params, user }) => {
+        const invoice = findInvoice(user, params.id);
+        if (!invoice) return notFound('Invoice not found.');
+        if (invoice.status !== PAID) {
+            payInvoice(invoice);
+            notify(user, 'Payment received', `Thank you, your payment for ${findService(invoice.service_id).service.name} has been received.`);
+        }
+        return HttpResponse.json(toInvoice(invoice));
+    }),
+);
+
+export const pagesHandlers = [
+    getFeed, getTrustPipeline, getCategories, getServices, getPurchased, buyService, getPayment, payPayment,
+];

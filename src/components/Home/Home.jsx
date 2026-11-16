@@ -26,6 +26,7 @@ import { useLocation } from "react-router-dom";
 import {setNewNotifications} from "../../store/account-slice";
 import {getCountNotifications} from "../../api/header";
 import MyFiles from "./MyFiles/MyFiles";
+import DemoPayment from "./DemoPayment/DemoPayment";
 
 const Home = () => {
     const dispatch = useAppDispatch();
@@ -93,6 +94,7 @@ const Home = () => {
                         <Route path={'/education'} element={<Education />}/>
                         <Route path={'/faq'} element={<FAQ />}/>
                         <Route path={'/personalInformation'} element={<EditProfile />}/>
+                        <Route path={'/demoPayment'} element={<DemoPayment />}/>
                     </Routes>
                 </div>
                 <RightBox isActive={menuActives.communication} setMenuActives={setMenuActives} />

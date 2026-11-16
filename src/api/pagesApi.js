@@ -106,3 +106,10 @@ export const getPurchases = (token, page) => getRequest(`${devUrl}services/purch
 export const getPurchasesFiles = (token, page) => getRequest(`${devUrl}sharefiles/?page=${page}`, token, getPurchasesFiles, page);
 
 export const getNexxessFiles = (token) => getRequest(`${devUrl}sharefiles/company/`, token, getNexxessFiles);
+
+// Demo only: the payment page inside the app (stands in for the payment provider of the original).
+export const getDemoPayment = (token, invoiceId) =>
+    getRequest(`${devUrl}invoices/${invoiceId}/payment/`, token, getDemoPayment, invoiceId);
+
+export const payDemoInvoice = (token, invoiceId) =>
+    postRequest(`${devUrl}invoices/${invoiceId}/payment/`, token, {}, payDemoInvoice, invoiceId);

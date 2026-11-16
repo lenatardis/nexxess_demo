@@ -1,6 +1,7 @@
 // Header notifications. Seed records carry `days_ago` (see dates.js); records added while the demo
 // is used carry a real `created_date`.
 import { dateFromOffset } from './dates';
+import { nextId } from '../db';
 import { perUser } from './perUser';
 
 const seedByStage = {
@@ -31,3 +32,10 @@ export const toNotification = ({ days_ago, ...record }) => ({
     ...record,
     created_date: record.created_date || dateFromOffset(days_ago),
 });
+
+/** Adds an unread notification for something that happened while the demo is used. */
+export const notify = (user, title, notification) => {
+    const list = notifications.of(user);
+    list.unshift({ id: nextId(list), is_opened: false, title, notification, created_date: dateFromOffset(0) });
+    notifications.save();
+};
