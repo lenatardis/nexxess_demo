@@ -10,6 +10,8 @@ import {loginVerification} from "../../../../api/authApi";
 import {setAuth} from "../../../../store/account-slice";
 import Preloader from "../../../Common/Preloader/Preloader";
 import {useNavigate} from "react-router";
+import DemoHint from "../../../Common/DemoHint/DemoHint";
+import {demoCode} from "../../../../settings/data";
 
 const Verification = () => {
     const email = useAppSelector(getEmail);
@@ -28,7 +30,9 @@ const Verification = () => {
         register,
         handleSubmit,
         formState: { errors },
-        setError
+        setError,
+        setValue,
+        clearErrors
     } = useForm({
         resolver: yupResolver(validationSchema),
     });
@@ -46,6 +50,7 @@ const Verification = () => {
     };
 
     return (
+        <>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.verification}>
             <h3>Enter your code</h3>
             <p>We sent a code to <a target={'_blank'} href={email}>{email}</a></p>
@@ -66,6 +71,15 @@ const Verification = () => {
                 <Preloader />
             )}
         </form>
+        <div className={styles.verification__demo}>
+            <DemoHint>
+                <p>No e-mail is sent in the demo. Use this code:</p>
+                <button type="button" onClick={() => { clearErrors(); setValue('code', demoCode); }}>
+                    {demoCode}
+                </button>
+            </DemoHint>
+        </div>
+        </>
     );
 };
 

@@ -10,3 +10,13 @@ export const demoGoogleProfile = {
     family_name: 'Harper',
     name: 'Daniel Harper',
 };
+
+// Demo access shown as hints on the login screens (nothing can be e-mailed in the demo);
+// the mock backend (src/mocks/data/users.js) seeds its users from the same values.
+export const demoPassword = 'DemoPortal2026';
+export const demoCode = '123456';
+export const demoAccounts = [
+    { email: 'olivia.bennett@example.com', name: 'Olivia Bennett', note: 'just started' },
+    { email: 'daniel.harper@example.com', name: 'Daniel Harper', note: 'trust in progress' },
+    { email: 'margaret.collins@example.com', name: 'Margaret Collins', note: 'trust completed' },
+];

@@ -7,7 +7,7 @@ import {useNavigate} from "react-router";
 import {sendForgotEmail} from "../../../../api/authApi";
 
 
-const ForgotPasswordForm = ({setIsLoading, setIsCompleteForm}) => {
+const ForgotPasswordForm = ({setIsLoading, setIsCompleteForm, setDemoResetToken}) => {
     const navigate = useNavigate();
 
     const {
@@ -17,7 +17,11 @@ const ForgotPasswordForm = ({setIsLoading, setIsCompleteForm}) => {
     const onSubmit = (data) => {
         setIsLoading(true);
         sendForgotEmail(data?.email).then((result) => {
-            if (result?.success) setIsCompleteForm(true)
+            if (result?.success) {
+                // Demo: the mock answers with the reset token instead of e-mailing the link
+                setDemoResetToken(result.demo_reset_token);
+                setIsCompleteForm(true)
+            }
             if (result?.errors) setError('All');
 
         }).finally(() => setIsLoading(false))

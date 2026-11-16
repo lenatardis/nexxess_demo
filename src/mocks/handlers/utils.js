@@ -1,4 +1,5 @@
 import { HttpResponse, delay } from 'msw';
+import { findUserById } from '../data/users';
 import { parseToken } from '../tokens';
 
 // Same path the API layer uses (devUrl in src/settings/data.js, without the trailing slash).
@@ -19,18 +20,28 @@ export const unauthorized = () =>
 
 export const notFound = (detail = 'Not found.') => errorResponse(404, 'not_found', detail, null, 'Not Found');
 
-/** The user id behind the request's bearer token, or null (missing, malformed or expired token). */
-export const getRequestUserId = (request) => {
+/** The demo user behind the request's bearer token, or null (missing, malformed or expired token). */
+export const getRequestUser = (request) => {
     const header = request.headers.get('Authorization') || '';
-    return header.startsWith('Bearer ') ? parseToken(header.slice(7), 'access') : null;
+    const id = header.startsWith('Bearer ') ? parseToken(header.slice(7), 'access') : null;
+    return id ? findUserById(id) : null;
 };
 
 /** Wraps a resolver: adds latency and rejects requests without a valid demo access token. */
 export const withAuth = (resolver) => async (info) => {
     await delay(LATENCY_MS);
-    const userId = getRequestUserId(info.request);
-    if (!userId) return unauthorized();
-    return resolver({ ...info, userId });
+    const user = getRequestUser(info.request);
+    if (!user) return unauthorized();
+    return resolver({ ...info, user });
+};
+
+/** The request's JSON body, or {} when there is none. */
+export const readJson = async (request) => {
+    try {
+        return (await request.json()) || {};
+    } catch {
+        return {};
+    }
 };
 
 /** Adds latency only (public endpoints: login, registration, token refresh, consultants list). */

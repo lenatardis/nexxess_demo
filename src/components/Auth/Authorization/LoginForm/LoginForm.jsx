@@ -9,13 +9,22 @@ import { useForm } from "react-hook-form";
 import { emailOptions, passwordOptions } from "../../../../settings/validations";
 import { useNavigate } from "react-router";
 import Preloader from "../../../Common/Preloader/Preloader";
+import DemoHint from "../../../Common/DemoHint/DemoHint";
+import { demoAccounts, demoPassword } from "../../../../settings/data";
 
 const LoginForm = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
 
-    const { register, handleSubmit, formState: { errors }, setError, clearErrors } = useForm();
+    const { register, handleSubmit, formState: { errors }, setError, clearErrors, setValue } = useForm();
+
+    // Demo: a click on a demo account fills the form; the two login steps stay as they are
+    const fillDemoAccount = (email) => {
+        clearErrors();
+        setValue("email", email);
+        setValue("password", demoPassword);
+    };
 
     const onSubmit = async (data) => {
         setIsLoading(true);
@@ -86,6 +95,15 @@ const LoginForm = () => {
                 </div>
                 <span className={styles.actions__topText}>or</span>
                 <GoogleAuth setIsLoading={setIsLoading} />
+                <DemoHint>
+                    <p>This is a portfolio demo with fictional data. Pick a demo client to fill the form
+                        (password for all: {demoPassword}):</p>
+                    {demoAccounts.map((account) => (
+                        <button key={account.email} type="button" onClick={() => fillDemoAccount(account.email)}>
+                            {account.name} <span>– {account.note}</span>
+                        </button>
+                    ))}
+                </DemoHint>
             </div>
             {isLoading && <Preloader />}
         </form>
