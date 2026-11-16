@@ -19,7 +19,7 @@ const seedUsers = [
         ...blank, id: 2, stage: 'progress', consultant_id: DEFAULT_CONSULTANT_ID, password: demoPassword,
         email: daniel.email, first_name: 'Daniel', last_name: 'Harper',
         phone: '+12025550176', phone_two: '+12025550118', email_two: 'd.harper@harper-holdings.example',
-        country: 'United States', city: 'Denver', street: '418 Larkspur Avenue',
+        country: 'United States', city: 'Denver', street: '12 Larkspur Ave',
     },
     {
         ...blank, id: 3, stage: 'finished', consultant_id: 15, password: demoPassword,

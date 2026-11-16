@@ -6,7 +6,7 @@
 // The app's own token keys (accessNexxessToken, refreshNexxessToken) are not touched here.
 
 // Bump when seed data or record shapes change: previously stored demo data is then discarded.
-const DATA_VERSION = 1;
+const DATA_VERSION = 2;
 const PREFIX = 'nexxess-demo:';
 
 // localStorage can be unavailable (blocked storage, some private modes): fall back to memory only.
