@@ -3,8 +3,11 @@ import { http, HttpResponse } from 'msw';
 import { findInvoice, invoicesOf, openInvoice, PAID, payInvoice, toInvoice } from '../data/invoices';
 import { notify } from '../data/notifications';
 import { CATEGORIES, findService, servicesOfCategory } from '../data/services';
+import { COURSES } from '../data/courses';
 import { buildInvoicePdf } from '../invoicePdf';
+import { faq } from '../data/faq';
 import { feed } from '../data/feed';
+import { companyFiles, filesOf } from '../data/files';
 import { pipelinesOf } from '../data/trusts';
 import { API, errorResponse, notFound, paginate, readJson, withAuth } from './utils';
 
@@ -152,7 +155,42 @@ const getInvoicePdf = http.get(
     }),
 );
 
+// --- Files, FAQ, Education ---
+
+const FILES_PAGE_SIZE = 6;
+const FAQ_PAGE_SIZE = 5;
+
+// Also asked by the shell and My Purchases without a page ("?page=undefined") – the first page then.
+const getFiles = http.get(
+    `${API}/sharefiles/`,
+    withAuth(({ request, user }) =>
+        HttpResponse.json(paginate(filesOf(user), new URL(request.url).searchParams.get('page'), FILES_PAGE_SIZE)),
+    ),
+);
+
+const getCompanyFiles = http.get(
+    `${API}/sharefiles/company/`,
+    withAuth(() => {
+        const results = companyFiles();
+        return HttpResponse.json({ count: results.length, total_pages: 1, results });
+    }),
+);
+
+const getFaq = http.get(
+    `${API}/services/faq/`,
+    withAuth(({ request }) =>
+        HttpResponse.json(paginate(faq, new URL(request.url).searchParams.get('page'), FAQ_PAGE_SIZE)),
+    ),
+);
+
+// The Education page is hardcoded in the frontend and only logs this answer.
+const getCourses = http.get(
+    `${API}/education/courses/`,
+    withAuth(() => HttpResponse.json({ count: COURSES.length, total_pages: 1, results: COURSES })),
+);
+
 export const pagesHandlers = [
     getFeed, getTrustPipeline, getCategories, getServices, getPurchased,
     getInvoices, getInvoicePdf, buyService, getPayment, payPayment,
+    getCompanyFiles, getFiles, getFaq, getCourses,
 ];
