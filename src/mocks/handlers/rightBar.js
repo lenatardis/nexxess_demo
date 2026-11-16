@@ -4,7 +4,7 @@ import { http, HttpResponse } from 'msw';
 import { avatarFor } from '../data/avatars';
 import { consultants, DEFAULT_CONSULTANT_ID } from '../data/consultants';
 import { statisticsOf } from '../data/statistics';
-import { trustsOf } from '../data/trusts';
+import { diagramsOf } from '../data/trusts';
 import { API, withAuth } from './utils';
 
 // How many cards the right box shows: the customer's own consultant first, then the default ones.
@@ -34,12 +34,7 @@ const getStatistics = http.get(
 const getDiagrams = http.get(
     `${API}/bitrix/trust_pipeline/diagrams/`,
     withAuth(({ user }) => {
-        const results = trustsOf(user).map(({ deal_id, deal_name, complete }) => ({
-            deal_id,
-            deal_name,
-            complete,
-            not_completed: 100 - complete,
-        }));
+        const results = diagramsOf(user);
         return HttpResponse.json({ count: results.length, total_pages: 1, results });
     }),
 );
