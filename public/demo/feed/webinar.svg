@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420">
+  <rect width="1200" height="420" fill="#0C1D36"/>
+  <circle cx="1040" cy="90" r="210" fill="#16305A"/>
+  <circle cx="1120" cy="360" r="130" fill="#C7B892" opacity="0.35"/>
+  <rect x="80" y="96" width="92" height="6" fill="#C7B892"/>
+  <text x="80" y="170" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="700">Keeping a Trust</text>
+  <text x="80" y="236" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="700">in Good Standing</text>
+  <text x="80" y="306" fill="#C7B892" font-family="Arial, Helvetica, sans-serif" font-size="28">Client webinar – 45 minutes – questions welcome</text>
+</svg>
