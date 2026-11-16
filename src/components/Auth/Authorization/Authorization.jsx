@@ -3,8 +3,6 @@ import styles from './Authorization.module.scss';
 import LoginForm from "./LoginForm/LoginForm";
 import SignInForm from "./SignInForm/SignInForm";
 import AuthChanger from "./AuthChanger/AuthChanger";
-import {GoogleOAuthProvider} from "@react-oauth/google";
-import {googleAuthToken} from "../../../settings/data";
 
 
 const Authorization = () => {
@@ -14,9 +12,7 @@ const Authorization = () => {
         <div className={styles.authorization}>
             <AuthChanger isLogin={isLogin} setIsLogin={setIsLogin}/>
             {isLogin
-                ? <GoogleOAuthProvider clientId={googleAuthToken}>
-                    <LoginForm isLogin={isLogin} setIsLogin={setIsLogin}/>
-                </GoogleOAuthProvider>
+                ? <LoginForm isLogin={isLogin} setIsLogin={setIsLogin}/>
                 : <SignInForm isLogin={isLogin} setIsLogin={setIsLogin}/>
             }
         </div>

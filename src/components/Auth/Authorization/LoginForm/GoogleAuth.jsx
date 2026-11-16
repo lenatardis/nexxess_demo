@@ -1,35 +1,28 @@
 import React from "react";
 import styles from "../Authorization.module.scss";
 import googleIcon from "../../../../assets/icons/googleIcon.svg";
-import {useGoogleLogin} from "@react-oauth/google";
-import {getGoogleProfile, setGoogleLogin} from "../../../../api/authApi";
+import {setGoogleLogin} from "../../../../api/authApi";
 import {setAuth} from "../../../../store/account-slice";
 import {useAppDispatch} from "../../../../hooks/redux";
 import {useNavigate} from "react-router";
+import {demoGoogleProfile} from "../../../../settings/data";
 
 
 const GoogleAuth = ({setIsLoading}) => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    
-    const onGoogleLogin = useGoogleLogin({
-        onSuccess: credentialResponse => {
-            setIsLoading(true);
-            if (credentialResponse && credentialResponse.access_token) {
-                getGoogleProfile(credentialResponse.access_token).then((result => {
-                    if (result && result.email) {
-                        setGoogleLogin(result.email, result.given_name, result.family_name, result.name).then(response => {
-                            if (response && response.access_token && response.refresh_token) {
-                                dispatch(setAuth(true));
-                                navigate('/');
-                            }
-                        })
-                    }
-                })).finally(() => setTimeout(() => setIsLoading(false), 300)
-                )
-            } else setIsLoading(false)
-        },
-    });
+
+    // Demo: no Google popup – the demo profile takes the place of Google's userinfo answer
+    const onGoogleLogin = () => {
+        setIsLoading(true);
+        const result = demoGoogleProfile;
+        setGoogleLogin(result.email, result.given_name, result.family_name, result.name).then(response => {
+            if (response && response.access_token && response.refresh_token) {
+                dispatch(setAuth(true));
+                navigate('/');
+            }
+        }).finally(() => setTimeout(() => setIsLoading(false), 300))
+    };
 
     return (
         <button className={styles.googleAuth} type='button' onClick={() => onGoogleLogin()}>

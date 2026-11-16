@@ -2,6 +2,7 @@
   "name": "nexxess-react",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://lenatardis.github.io/nexxess_demo",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
@@ -45,6 +46,14 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "msw": "^2.15.0"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
     ]
   }
 }

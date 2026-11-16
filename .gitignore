@@ -26,7 +26,5 @@ yarn-error.log*
 
 src/settings/devData.js
 
-src/settings/data.js
-
 # local working notes, not for the public repo
 CLAUDE.md

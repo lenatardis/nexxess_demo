@@ -9,7 +9,6 @@ import { getAccessToken } from "../../../api/localStorage";
 import { getConsultants, getRightBarStatics } from "../../../api/rightBarApi";
 import { useAppSelector } from "../../../hooks/redux";
 import { getProfile, getStateServices } from "../../../store/selectors";
-import { widgetUrl } from "../../../settings/data";
 import TrustCreatione from "./TrustCreatione/TrustCreatione";
 import useWindowSize from "../../../hooks/useWindowSize";
 
@@ -23,16 +22,6 @@ const RightBox = ({ isActive, setMenuActives }) => {
     const hasFetched = useRef(false);
     const { width } = useWindowSize();
     const isMobile = width < 768;
-
-    useEffect(() => {
-        (function (w, d, u) {
-            const s = d.createElement("script");
-            s.async = true;
-            s.src = `${u}?${Date.now() / 60000 | 0}`;
-            const h = d.getElementsByTagName("script")[0];
-            h.parentNode.insertBefore(s, h);
-        })(window, document, widgetUrl);
-    }, []);
 
     const fetchData = useCallback(async () => {
         if (!profile || hasFetched.current) return;
