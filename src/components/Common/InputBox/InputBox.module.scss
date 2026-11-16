@@ -1,0 +1,50 @@
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &__label {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    color: #0A1329;
+    padding-left: 20px;
+  }
+
+  &__input {
+    background-color: #E4E7E9;
+    border-radius: 33px;
+    height: 60px;
+    color: #0A1329;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+    padding: 0 20px;
+    border: 1px solid #E4E7E9;
+  }
+
+  &__error {
+    border-color: #F17C7C;
+  }
+
+  &__input:focus {
+    background-color: #BFCBDA;
+  }
+
+  &__input::placeholder {
+    font-weight: 400;
+    color: #6B717F;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .inputBox {
+    &__input {
+      height: 40px;
+    }
+
+    label {
+      margin-bottom: 3px;
+    }
+  }
+}

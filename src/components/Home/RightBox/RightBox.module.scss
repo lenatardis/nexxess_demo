@@ -1,0 +1,71 @@
+.rightBox, .rightBoxActive {
+  position: fixed;
+  top: 80px;
+  right: 40px;
+  max-width: 388px;
+  width: 100%;
+
+  h4 {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 28px;
+    margin-bottom: 8px;
+  }
+}
+
+.close {
+  position: absolute;
+  right: 0;
+  top: 10px;
+
+  button {
+    height: 48px;
+    width: 64px;
+    min-width: 64px;
+    max-height: 48px;
+    background-color: #192942;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+  }
+}
+
+.services__skeletonList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 8px;
+  margin-bottom: 12px;
+}
+
+.consultants__skeletonList {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  .rightBox, .rightBoxActive {
+    padding: 10px 25px 20px;
+    top: -200%;
+    transition: all 0.2s;
+    background-color: #E4E7E9;
+    width: 100%;
+    max-width: 100%;
+    right: 0;
+    z-index: 11;
+  }
+
+  .rightBoxActive {
+    top: 58px;
+    height: calc(100% - 58px);
+    max-height: calc(100% - 58px);
+    overflow-y: auto;
+  }
+
+  .rightBoxActive {
+    h4 {
+      line-height: 22px;
+      margin: 10px 0 20px;
+    }
+  }
+}

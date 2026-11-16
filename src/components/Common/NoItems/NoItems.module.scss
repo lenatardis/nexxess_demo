@@ -1,0 +1,37 @@
+.noItems {
+  h3 {
+    padding-top: 10vh;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 33.3px;
+    text-align: center;
+
+    .first {
+      display: block;
+      font-size: 52px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .imgCover {
+    display: flex;
+    justify-content: center;
+    max-height: 550px;
+    overflow: hidden;
+
+    img {
+      object-fit: cover;
+      max-width: 700px;
+      width: 100%;
+
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .noItems {
+    .imgCover {
+      height: 30vh;
+    }
+  }
+}

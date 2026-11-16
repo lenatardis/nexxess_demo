@@ -1,0 +1,166 @@
+.feed {
+  background: #C7B892;
+  padding-left: 15px;
+  border-radius: 33px;
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 30px;
+
+  &__wrap {
+    background: #ffffff;
+    padding: 30px 30px 30px 15px;
+  }
+}
+
+.titleWrap {
+  display: flex;
+  column-gap: 22px;
+  margin-bottom: 30px;
+}
+
+.avatar {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.infoWrap {
+  width: 100%;
+}
+
+.name {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 29px;
+  color: #0A1329;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.position, .date {
+  font-size: 20px;
+  line-height: 29px;
+  color: #6B717F;
+}
+
+/*.descWrap {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  column-gap: 30px;
+  row-gap: 15px;
+  margin-bottom: 30px;
+}
+
+.mainImgWrap img {
+  width: 100%;
+  max-width: 373px;
+  border-radius: 22px;
+  object-fit: cover;
+}*/
+
+.desc p {
+  font-size: 20px;
+  line-height: 32px;
+  color: #6B717F;
+}
+
+.desc img {
+  width: 100%;
+}
+
+.detailWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fileBlock {
+  display: flex;
+  flex-direction: column;
+
+  a {
+    position: relative;
+    font-size: 20px;
+    line-height: 29px;
+    color: #6B717F;
+    padding-left: 26px;
+    padding-right: 48px;
+
+    &:before {
+      position: absolute;
+      content: '';
+      width: 18px;
+      height: 17px;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background: url(../../../../assets/icons/paperclip.svg) no-repeat left top;
+    }
+
+    &:after {
+      position: absolute;
+      content: '';
+      width: 17px;
+      height: 15px;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background: url(../../../../assets/icons/download.svg) no-repeat left top;
+    }
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .name {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .position {
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  .date {
+    font-size: 10px;
+    line-height: 12px;
+  }
+
+  .titleWrap {
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .descWrap {
+    column-gap: 10px;
+    margin-bottom: 40px;
+  }
+
+  .desc p {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .fileBlock {
+    a {
+      font-size: 12px;
+      line-height: 28px;
+    }
+  }
+
+
+  .feed {
+    padding-left: 10px;
+    margin-bottom: 10px;
+
+    &__wrap {
+      padding: 20px 20px 20px 10px;
+    }
+  }
+}
+

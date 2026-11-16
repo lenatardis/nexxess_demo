@@ -1,0 +1,13 @@
+.homeContent {
+  h3 {
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .homeContent {
+    h3 {
+      margin-top: 25px;
+    }
+  }
+}

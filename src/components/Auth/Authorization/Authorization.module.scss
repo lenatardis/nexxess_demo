@@ -1,0 +1,186 @@
+.authBox, .verification {
+  border-radius: 22px;
+  background-color: #fff;
+  padding: 30px 44px 24px;
+  position: relative;
+}
+
+.verification {
+  max-width: 610px;
+  margin: 0 auto;
+
+  h3 {
+    margin-bottom: 14px;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 32px;
+    color: #0A1329;
+    text-align: center;
+  }
+
+  p {
+    font-weight: 400;
+    text-align: center;
+    font-size: 22px;
+    line-height: 33px;
+    margin-bottom: 24px;
+
+    a {
+      color: #A78631;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+}
+
+.authForm {
+  h4 {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 33px;
+    margin-bottom: 16px;
+  }
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 16px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__topText {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    margin: 12px auto;
+  }
+}
+
+.googleAuth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  min-width: 250px;
+  background-color: #fff;
+  height: 45px;
+  border-radius: 33px;
+  position: relative;
+  margin-bottom: 30px;
+
+  &__icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 26px;
+    height: 26px;
+  }
+
+  span {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+  }
+}
+
+.login {
+  max-width: 388px;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 0;
+
+  span {
+    text-transform: uppercase;
+  }
+}
+
+.login :global(.darkYellowBtn) {
+  width: 100%;
+  flex: 0 0 auto;
+  height: 60px;
+}
+
+.login :global(.darkYellowBtn) {
+  span {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+  }
+}
+
+.forgot {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin-top: 20px;
+
+  &__btn p {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 20px;
+    text-decoration: underline;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .authorization {
+    padding: 0 16px;
+  }
+  .authForm {
+    h4 {
+      font-size: 20px;
+      line-height: 28px;
+      margin-bottom: 20px;
+      max-width: 220px;
+    }
+  }
+
+  .authBox {
+    padding: 14px 20px 20px;
+  }
+
+  .form {
+    grid-template-columns: 1fr;
+    grid-row-gap: 8px;
+  }
+
+  .login :global(.darkYellowBtn) {
+    height: 40px;
+
+    span {
+      font-size: 14px;
+    }
+  }
+
+  .googleAuth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    min-width: 250px;
+    background-color: #fff;
+    height: 36px;
+
+    img {
+      width: 22px;
+      height: 22px;
+    }
+
+    span {
+      line-height: 16px;
+      font-weight: 500;
+    }
+  }
+}
+

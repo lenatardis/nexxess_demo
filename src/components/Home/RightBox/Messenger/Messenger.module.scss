@@ -1,0 +1,101 @@
+.messenger {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  margin-bottom: 12px;
+}
+
+.chat {
+  background-color: #BFCBDA;
+  border-radius: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  min-height: 80px;
+
+  &__user {
+    display: flex;
+    align-items: center;
+    column-gap: 16px;
+  }
+
+  &__userIcon {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0C1D36;
+  }
+
+  .avatar {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &__userInfo {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 29px;
+      color: #192236;
+    }
+
+    span {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 29px;
+      color: #6B717F;
+    }
+  }
+
+  &__send {
+    height: 44px;
+    width: 44px;
+    border-radius: 50%;
+    background-color: #192236;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: #C7B892;
+      transition: 200ms all linear;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .chat {
+    padding: 7px 12px 7px;
+
+    &__user {
+      column-gap: 13px;
+    }
+
+    &__userInfo {
+      p {
+        font-size: 16px;
+        line-height: 18px;
+        margin-bottom: 5px;
+      }
+
+      span {
+        font-size: 12px;
+        line-height: 12px;
+      }
+    }
+  }
+
+  .messenger {
+    margin-top: 65px;
+    margin-bottom: 30px;
+  }
+}

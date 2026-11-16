@@ -1,0 +1,102 @@
+.contact {
+  background: transparent;
+  /* background: #ffffff;*/
+  /* padding: 8px 16px 8px 16px;*/
+  padding: 0;
+  border-radius: 22px;
+
+  h4 {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    /* color: #0A1329;*/
+    color: #ffffff;
+    margin-bottom: 3px;
+  }
+
+  .linkBlock {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+  }
+
+  .phone, .email, .address {
+    position: relative;
+    padding-left: 23px;
+    /* color: #6B717F;*/
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .phone {
+    padding-left: 28px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 21px;
+      height: 21px;
+      background: url('../../../../assets/icons/phone.svg') no-repeat left center;
+      background-size: 14px;
+    }
+
+  }
+
+  .email {
+    padding-left: 28px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 24px;
+      height: 17px;
+      background: url('../../../../assets/icons/envelope.svg') no-repeat left center;
+      background-size: 14px;
+    }
+  }
+
+  .address {
+    padding-left: 28px;
+    font-size: 14px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 19px;
+      height: 26px;
+      background: url('../../../../assets/icons/geo.svg') no-repeat left center;
+      background-size: 12px;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .contact {
+    /*  padding-right: 10px;*/
+    margin-bottom: 10px;
+
+    h4 {
+      font-size: 18px;
+      line-height: 18px;
+      margin-bottom: 10px;
+    }
+
+    .phone, .email, .address {
+      /* font-size: 14px;
+       line-height: 29.14px;*/
+      font-size: 12px;
+      line-height: 18px;
+      padding-left: 36px;
+    }
+  }
+}

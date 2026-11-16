@@ -1,0 +1,46 @@
+.MuiInputBase-root svg {
+  position: absolute;
+  right: 9px;
+  pointer-events: none;
+}
+
+.MuiInputBase-root .css-w76bbz-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 18px 16px;
+
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 29px;
+    color: #6B717F;
+  }
+}
+
+.MuiBox-root .css-fbo0vx-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+  height: 60px;
+  width: 170px;
+  border: none;
+  border-radius: 33px;
+}
+
+.MuiBox-root .css-1ll44ll-MuiOutlinedInput-notchedOutline {
+  border: none;
+}
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation8 {
+  border-radius: 33px;
+  box-shadow: none;
+  margin-top: 4px;
+
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 29px;
+    color: #6B717F;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .MuiBox-root .css-fbo0vx-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+    height: 40px;
+  }
+}

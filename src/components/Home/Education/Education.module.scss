@@ -1,0 +1,198 @@
+.education {
+
+  &__banner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 33px;
+    margin-bottom: 20px;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 33px;
+    }
+
+    .textBox {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      max-width: 443px;
+      color: #ffffff;
+      border-radius: 22px;
+      background: #1F97FE;
+     /* background: linear-gradient(80deg, #1F9AFF, #1F66EC);*/
+      background: radial-gradient(circle at right top, rgba(255, 255, 255, 0) 37%, rgba(255, 255, 255, .2) 55%);
+      padding: 16px 22px;
+
+      p {
+        font-size: 46.62px;
+        font-weight: 700;
+        line-height: 48.51px;
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+.currentLearn {
+  background-color: #BFCBDA;
+  border-radius: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 36px;
+  padding: 28px;
+
+  &__leftBox {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    height: 100%;
+  }
+
+  &__image {
+    width: 170px;
+    height: 100%;
+    max-height: 114px;
+    min-height: 114px;
+    border-radius: 22px;
+    background-color: #E4E6E8;
+
+    img {
+      height: 100%;
+      object-fit: cover;
+      border-radius: 22px;
+    }
+  }
+
+  &__progress {
+    max-width: 380px;
+    width: 100%;
+
+    h5 {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 33px;
+    }
+
+    p {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      color: #6B717F;
+
+      span {
+        font-weight: 700;
+        color: #0A1329;
+      }
+    }
+  }
+
+  &__progressLine {
+    height: 12px;
+    border-radius: 33px;
+    position: relative;
+    width: 100%;
+    background-color: #E4E7E9;
+    margin-top: 10px;
+
+    span {
+      display: block;
+      position: absolute;
+      background-color: #0A1329;
+      border-radius: 22px;
+      left: 0;
+      top: 0;
+      height: 100%;
+    }
+  }
+
+  &__rightBox {
+    padding: 10px 30px;
+    background-color: #E4E6E8;
+    border-radius: 22px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+
+    p {
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 30px;
+      color: #6B717F;
+
+      span {
+        font-weight: 700;
+        color: #0A1329;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .education {
+    &__banner {
+      .textBox {
+        padding: 10px 13px;
+        max-width: 220px;
+
+        p {
+          font-size: 22px;
+          line-height: 24px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .education {
+
+    &__banner {
+      height: 207px;
+
+      img {
+        object-fit: initial;
+      }
+    }
+
+    h3 {
+      margin-bottom: 20px;
+    }
+
+    .currentLearn {
+      flex-direction: column;
+      padding: 20px 16px 20px 20px;
+      row-gap: 20px;
+
+      &__leftBox {
+        column-gap: 15px;
+      }
+
+      &__rightBox {
+        width: 100%;
+        row-gap: 0;
+
+        p, span {
+          font-size: 22px;
+          line-height: 34px;
+        }
+      }
+
+      &__progress {
+        h5 {
+          font-size: 18px;
+          line-height: 20px;
+          margin-bottom: 10px;
+        }
+      }
+
+      &__progressLine {
+        margin-top: 5px;
+      }
+    }
+  }
+}

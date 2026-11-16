@@ -1,0 +1,130 @@
+.learns {
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 33px;
+  margin-top: 20px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    column-gap: 24px;
+    margin-bottom: 30px;
+  }
+
+  &__title {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 33px;
+  }
+
+  &__count {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #C7B892;
+    border-radius: 12px;
+    flex: 0 0 auto;
+
+    span {
+      font-size: 32px;
+      font-weight: 500;
+      line-height: 30px;
+      color: #fff;
+    }
+  }
+}
+
+.learnsList {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.learn {
+  display: flex;
+  align-items: center;
+  column-gap: 40px;
+  justify-content: space-between;
+
+  &__info {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+  }
+
+  &__infoText {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 33px;
+    }
+
+    span {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      color: #6B717F;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .learns {
+    background: none;
+    padding: 0;
+
+    &__header {
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    &__title {
+      font-size: 22px;
+    }
+
+    &__count {
+      width: 28px;
+      height: 28px;
+
+      span {
+        font-size: 22px;
+        line-height: 22px;
+      }
+    }
+  }
+
+  .learn {
+    column-gap: 0;
+    align-items: flex-start;
+
+    &__infoText {
+      max-width: 165px;
+
+      p {
+        font-size: 14px;
+        line-height: 22px;
+      }
+
+      span {
+        font-size: 12px;
+        line-height: 16px;
+      }
+    }
+
+    &__info {
+      align-items: flex-start;
+
+      img {
+        border-radius: 12px;
+        width: 110px;
+        height: 82px;
+        object-fit: cover;
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+.inputBoxConsultant {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+
+  label {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    color: #0A1329;
+    padding-left: 20px;
+  }
+}
+
+.inputBoxConsultant__option {
+  color: #0A1329;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .inputBoxConsultant {
+    label {
+      margin-bottom: 3px;
+    }
+  }
+}
+
+.inputBoxConsultant {
+  .MuiOutlinedInput-input {
+    cursor: pointer;
+  }
+
+  label.MuiInputLabel-animated {
+    color: #0A1329;
+    font-size: 17px;
+    font-weight: 500;
+    opacity: 0.7;
+    padding-left: 0;
+    line-height: 24px;
+    user-select: none
+  }
+}
+
+.customArrow {
+  position: absolute;
+  right: 24px;
+  bottom: calc(50% - 25px);
+  transform: translateY(-50%) rotateZ(180deg);
+  transition: all .2s;
+  pointer-events: none;
+}
+
+.inputBoxConsultant:has(.Mui-focused) .customArrow {
+  position: absolute;
+  right: 24px;
+  bottom: calc(50% - 35px);
+  transform: translateY(-50%) rotateZ(0);
+}

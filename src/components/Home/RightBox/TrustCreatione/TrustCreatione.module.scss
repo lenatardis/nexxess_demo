@@ -1,0 +1,55 @@
+.trustCreatione {
+  margin-top: 12px;
+  border-radius: 12px;
+  background-color: #fff;
+  display: flex;
+  column-gap: 16px;
+  width: 100%;
+  padding: 14px 12px 15px 16px;
+
+  &__title {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 28px;
+    white-space: nowrap;
+  }
+
+  &__process {
+    width: 100%;
+    /*background-color: #E4E7E9;*/
+    background-color: transparent;
+    border-radius: 4px;
+    position: relative;
+  }
+
+  span {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 14px;
+    color: #fff;
+  }
+}
+
+.red, .green {
+  border-radius: 4px;
+  position: absolute;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  span {
+    padding: 2px 6px 0 0;
+  }
+}
+
+.red {
+  background-color: #F17C7C;
+  z-index: 1;
+}
+
+.green {
+  background-color: #6AC8A2;
+  z-index: 2;
+  justify-content: flex-start;
+}

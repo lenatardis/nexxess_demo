@@ -1,0 +1,36 @@
+.auth {
+  max-width: 890px;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 8vh;
+}
+
+.logo {
+  display: flex;
+  margin-bottom: 8vh;
+  justify-content: center;
+
+  &__image {
+    width: 350px;
+    min-width: 350px;
+    height: 105px;
+    min-height: 105px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .logo {
+    margin-bottom: 32px;
+
+    .auth {
+      padding: 30px 16px 30px;
+    }
+
+    &__image {
+      width: 162px;
+      min-width: 162px;
+      height: 48px;
+      min-height: 48px;
+    }
+  }
+}

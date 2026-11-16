@@ -1,0 +1,144 @@
+.processAccordions {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.accordion {
+  width: 100%;
+  border-radius: 33px;
+  overflow: hidden;
+
+  &__header {
+    height: 62px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+    align-items: center;
+    background-color: #fff;
+    border-top-left-radius: 33px;
+    border-top-right-radius: 33px;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  &__headerTitle {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+  }
+
+  &__headerDate {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+
+    span {
+      padding-top: 2px;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 14px;
+    }
+  }
+
+  &__content, &__contentHide {
+    background-color: #F4F6F8;
+    padding: 20px 30px;
+    transition: all .15s;
+    border-bottom-left-radius: 33px;
+    border-bottom-right-radius: 33px;
+
+    p, img {
+      opacity: 1;
+    }
+  }
+
+  &__contentHide {
+    height: 0;
+    overflow: hidden;
+    padding: 0 30px;
+
+    p, img {
+      opacity: 0;
+    }
+  }
+}
+
+.tasks {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  align-items: center;
+  row-gap: 10px;
+
+  &__item, &__itemFalse {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+
+    img {
+      padding-bottom: 1px;
+    }
+  }
+
+  &__itemFalse {
+    opacity: 0.6;
+    cursor: default;
+
+    p {
+      opacity: 0.4;
+    }
+  }
+}
+
+.comments {
+  margin-top: 32px;
+
+  &__header {
+    h4 {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 29px;
+    }
+  }
+
+  &__content {
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+  }
+}
+
+.secondDate {
+  margin-top: 10px;
+  color: #6B717F;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+@media only screen and (max-width: 768px) {
+  .accordion {
+    &__header {
+      height: 46px;
+      border-top-left-radius: 22px;
+      border-top-right-radius: 22px;
+    }
+
+    &__content, &__contentHide {
+      background-color: #F4F6F8;
+      padding: 16px;
+    }
+    &__contentHide {
+      height: 0;
+      overflow: hidden;
+      padding: 0 15px;
+    }
+  }
+
+  .comments {
+    margin-top: 16px;
+  }
+}

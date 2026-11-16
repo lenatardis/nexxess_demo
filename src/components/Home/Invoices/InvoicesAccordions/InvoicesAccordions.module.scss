@@ -1,0 +1,145 @@
+.processAccordions {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.accordion {
+  width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+
+  &__header {
+    height: 36px;
+    width: 100%;
+    border-radius: 33px;
+    display: flex;
+    padding: 0 30px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    cursor: pointer;
+
+    img {
+      transition: all .15s;
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__headerTitle {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+  }
+
+  &__headerDate {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+
+    img {
+      padding-bottom: 3px;
+    }
+
+    span {
+      padding-top: 2px;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 14px;
+    }
+  }
+
+  &__content, &__contentHide {
+    margin-top: 10px;
+    transition: all .1s;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    width: 100%;
+
+    p, img, div, button {
+      opacity: 1;
+      transition: all .1s;
+    }
+  }
+
+  &__contentHide {
+    height: 0;
+    overflow: hidden;
+    padding: 0 30px;
+
+    p, img, div, button {
+      opacity: 0;
+    }
+  }
+}
+
+.accordion:has(.show) {
+  .accordion__header {
+    div img {
+      transform: rotateZ(180deg);
+    }
+  }
+}
+
+.contentList {
+  height: 62px;
+  width: 100%;
+  display: grid;
+  border-radius: 33px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  background-color: #fff;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+}
+
+.status {
+  padding: 4px 26px;
+  background-color: #6AC8A2;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    text-align: center;
+  }
+
+  span {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 29px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contentList {
+    height: 40px;
+    div {
+      p {
+        font-size: 10px;
+        line-height: 29px;
+
+        &.status {
+          padding: 4px 8px;
+          span {
+            font-size: 10px;
+            line-height: 10px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,154 @@
+
+.fileBox, .fileBoxRow {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 50px;
+  row-gap: 15px;
+  background-color: #fff;
+  border-radius: 33px;
+  padding: 24px;
+  margin-bottom: 30px;
+  //min-height: 128px;
+}
+
+.fileBoxRow {
+  flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+  .fileBox {
+    padding: 20px 30px 20px 25px;
+  }
+}
+
+.link, .linkRow {
+  display: flex;
+  flex-direction: column;
+  row-gap: 6px;
+  align-items: center;
+
+  .shapeWrap {
+    position: relative;
+
+    &.xls {
+      .type {
+        background: #6EBF59;
+      }
+    }
+
+    &.doc {
+      .type {
+        background: #6C87E8;
+
+        span {
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    &.video {
+      .type {
+        background: #006747;
+      }
+    }
+
+    &.archive {
+      .type {
+        background: #6A4C9C;
+      }
+    }
+
+    &.image {
+      .type {
+        background: #F7C948;
+      }
+    }
+  }
+
+  .shape {
+    display: flex;
+    width: 55px;
+    height: 55px;
+    border-radius: 22px;
+    background: #E4E7E9;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .type {
+    position: absolute;
+    left: 50%;
+    top: -7px;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    padding: 2px 4px;
+    height: 14px;
+    border-radius: 6px;
+    background: #FA4848;
+
+    span {
+      color: #ffffff;
+      font-size: 10px;
+      line-height: 20px;
+      text-transform: uppercase;
+    }
+  }
+
+  .title {
+    display: -webkit-box;
+    line-clamp: 1;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    font-size: 12px;
+    line-height: 20px;
+    color: #6B717F;
+    max-width: 60px;
+  }
+}
+
+.linkRow {
+  flex-direction: row;
+  column-gap: 16px;
+
+  .title {
+    max-width: 100%;
+  }
+}
+
+.notFiles {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+
+  p {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #6B717F;
+  }
+}
+
+.skeletonRow {
+  margin-top: 30px;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media screen and (max-width: 1700px) {
+  .skeletonRow {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .skeletonRow {
+    grid-template-columns: 1fr;
+  }
+}
