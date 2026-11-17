@@ -1,8 +1,8 @@
 .rightBox, .rightBoxActive {
   position: fixed;
   top: 80px;
-  right: 40px;
-  max-width: 388px;
+  right: var(--side-edge);
+  max-width: var(--side-width); // Demo: was 388px
   width: 100%;
 
   h4 {
@@ -43,7 +43,7 @@
   margin-bottom: 10px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1280px) {
   .rightBox, .rightBoxActive {
     padding: 10px 25px 20px;
     top: -200%;

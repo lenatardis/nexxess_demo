@@ -12,7 +12,8 @@
 }
 
 .content {
-  max-width: calc(100vw - 388px - 388px - 180px);
+  // Demo: was calc(100vw - 388px - 388px - 180px) – see --side-width in Base.scss
+  max-width: calc(100vw - 2 * (var(--side-edge) + var(--side-width) + var(--side-gap)));
   width: 100%;
   min-height: 800px;
   padding-bottom: 40px;
@@ -26,7 +27,7 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1280px) {
   .home {
     padding-top: 58px;
   }

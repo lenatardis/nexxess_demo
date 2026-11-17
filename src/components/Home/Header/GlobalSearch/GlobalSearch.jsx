@@ -5,6 +5,7 @@ import searchIconMob from "../../../../assets/icons/searchMob.svg";
 import { getAccessToken } from "../../../../api/localStorage";
 import { getSearchResult } from "../../../../api/header";
 import GlobalSearchResult from "./GlobalSearchResult";
+import {isPhoneLayout} from "../../../../settings/layout";
 
 const useDebounce = (callback, delay) => {
     const timeoutRef = useRef(null);
@@ -44,7 +45,7 @@ const GlobalSearch = () => {
         setList([]);
     }, []);
 
-    const iconSrc = useMemo(() => (window.innerWidth >= 768 ? searchIcon : searchIconMob), []);
+    const iconSrc = useMemo(() => (!isPhoneLayout() ? searchIcon : searchIconMob), []);
 
     return (
         <div

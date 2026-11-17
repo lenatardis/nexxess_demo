@@ -29,6 +29,7 @@ import MyFiles from "./MyFiles/MyFiles";
 import DemoPayment from "./DemoPayment/DemoPayment";
 import LegalNotice from "./LegalNotice/LegalNotice";
 import DemoChat from "./DemoChat/DemoChat";
+import {isPhoneLayout} from "../../settings/layout";
 
 const Home = () => {
     const dispatch = useAppDispatch();
@@ -76,7 +77,7 @@ const Home = () => {
         <>
         <div className={styles.home}>
             <Header />
-            {window.innerWidth < 768 && (
+            {isPhoneLayout() && (
                 <MobSubHeader setMenuActives={setMenuActives} menuActives={menuActives} />
             )}
             <div className={styles.centralWrapper}>

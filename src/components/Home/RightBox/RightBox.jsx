@@ -11,6 +11,7 @@ import { useAppSelector } from "../../../hooks/redux";
 import { getProfile, getStateServices } from "../../../store/selectors";
 import TrustCreatione from "./TrustCreatione/TrustCreatione";
 import useWindowSize from "../../../hooks/useWindowSize";
+import {isPhoneLayout} from "../../../settings/layout";
 
 const skeletonCount = 3;
 
@@ -21,7 +22,7 @@ const RightBox = ({ isActive, setMenuActives }) => {
     const [statics, setStatics] = useState(null);
     const hasFetched = useRef(false);
     const { width } = useWindowSize();
-    const isMobile = width < 768;
+    const isMobile = isPhoneLayout(width);
 
     const fetchData = useCallback(async () => {
         if (!profile || hasFetched.current) return;

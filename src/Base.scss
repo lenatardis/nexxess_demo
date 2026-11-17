@@ -1,3 +1,13 @@
+// Demo: the three desktop columns (left menu, content, right box) fit the window down to the phone layout
+// (≤ 1280px, src/settings/layout.js). From ~1516px up this is the original: 388px side columns 40px from the
+// edge, 50px gaps. Narrower, the gaps go down to 24px and then the side columns to 300px, so the content
+// keeps about 560px.
+:root {
+  --side-edge: 40px;
+  --side-gap: clamp(24px, calc((100vw - 1416px) / 2), 50px);
+  --side-width: clamp(300px, calc((100vw - 688px) / 2), 388px);
+}
+
 * {
   padding: 0;
   margin: 0;

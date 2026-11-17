@@ -12,6 +12,7 @@ import { getNewNotifications } from "../../../../store/selectors";
 import { setNewNotifications } from "../../../../store/account-slice";
 import { useAppDispatch } from "../../../../hooks/redux";
 import useWindowSize from "../../../../hooks/useWindowSize";
+import {isPhoneLayout} from "../../../../settings/layout";
 
 const Notifications = () => {
     const dispatch = useAppDispatch();
@@ -46,7 +47,7 @@ const Notifications = () => {
         <ClickAwayListener onClickAway={() => setShowPopup(false)}>
             <div className={`${styles.header__menuItem} ${styles.itemBtn} ${styles.notificationBtn}`} title="Notifications">
                 <button className={styles.notificationBtn} onClick={togglePopup}>
-                    <img src={width >= 768 ? notificationIcon : notificationIconMob} alt="notifications" />
+                    <img src={!isPhoneLayout(width) ? notificationIcon : notificationIconMob} alt="notifications" />
                     {!!newNotificationsCount && (
                         <div className={styles.notificationCount}>
                             <span>{newNotificationsCount}</span>

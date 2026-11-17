@@ -4,10 +4,11 @@ import Navigation from "../Navigation/Navigation";
 import AnotherProjects from "./AnotherProjects/AnotherProjects";
 import ContactInformation from "./ContactInformation/ContactInformation";
 import TrustCreatione from "../RightBox/TrustCreatione/TrustCreatione";
+import {isPhoneLayout} from "../../../settings/layout";
 
 const LeftBox = ({isActive, setMenuActives}) => {
     return (
-        <div className={window.innerWidth < 768 && isActive ? `${styles.leftBoxActive} menuActive` : styles.leftBox}>
+        <div className={isPhoneLayout() && isActive ? `${styles.leftBoxActive} menuActive` : styles.leftBox}>
             <Navigation setMenuActives={setMenuActives}/>
             <AnotherProjects/>
           {/*  <ContactInformation/>*/}

@@ -128,7 +128,7 @@
   height: 30px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1280px) {
   .headerWrapper {
     height: 58px;
   }
@@ -400,7 +400,7 @@
 
 
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1280px) {
   // Demo fix: the popup hung 100px past the bell and was cut off at the left edge of a phone screen;
   // here it is pinned to the right edge of the screen and never wider than the screen
   .notificationPopup {

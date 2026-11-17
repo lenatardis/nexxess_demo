@@ -1,12 +1,12 @@
 .leftBox, .leftBoxActive {
-  max-width: 388px;
+  max-width: var(--side-width); // Demo: was 388px
   width: 100%;
   position: fixed;
-  left: 40px;
+  left: var(--side-edge);
   top: 80px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1280px) {
   .leftBox, .leftBoxActive {
     z-index: 8;
     padding: 10px 25px 50px 25px;

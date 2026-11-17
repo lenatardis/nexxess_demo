@@ -2,6 +2,7 @@ import React from "react";
 import styles from './Navigation.module.scss';
 import {useLocation, useNavigate} from "react-router";
 import close from '../../../assets/icons/closeWhite.svg';
+import {isPhoneLayout} from "../../../settings/layout";
 
 const Navigation = ({setMenuActives}) => {
     const {pathname} = useLocation();
@@ -29,7 +30,7 @@ const Navigation = ({setMenuActives}) => {
     const onNavigate = (item) => {
         if (item && !item.disabled) {
             navigate(item.url);
-            if (window.innerWidth < 768) {
+            if (isPhoneLayout()) {
                 onClose()
             }
         }
@@ -48,7 +49,7 @@ const Navigation = ({setMenuActives}) => {
                     ))
                 )}
             </ul>
-            {window.innerWidth < 768 && (
+            {isPhoneLayout() && (
                 <div className={styles.close}>
                     <button onClick={() => onClose()}>
                         <img src={close} alt=""/>
