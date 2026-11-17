@@ -41,7 +41,11 @@
     opacity: 0.7;
     padding-left: 0;
     line-height: 24px;
-    user-select: none
+    user-select: none;
+    // Demo fix: MUI places the label 16px from the top (made for its 56px field), so in the smaller fields it sat
+    // low – centred now, and starting where the other fields' placeholders start
+    top: 50%;
+    transform: translate(20px, -50%);
   }
 }
 

@@ -129,6 +129,9 @@ const ConsultantsList = ({ consultant, setConsultant }) => {
                                 display: "flex",
                                 alignItems: "center",
                                 paddingRight: "40px",
+                                // Demo: with MUI's 5px input padding the picked name starts 20px in, like the placeholder
+                                // and the other fields' text (was MUI's 9px)
+                                paddingLeft: "15px",
                             },
                             "& .MuiOutlinedInput-notchedOutline": {
                                 border: "none",
