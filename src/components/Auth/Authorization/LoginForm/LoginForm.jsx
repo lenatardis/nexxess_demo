@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../Authorization.module.scss";
 import InputBox from "../../../Common/InputBox/InputBox";
 import { useAppDispatch } from "../../../../hooks/redux";
@@ -9,10 +9,10 @@ import { useForm } from "react-hook-form";
 import { emailOptions, passwordOptions } from "../../../../settings/validations";
 import { useNavigate } from "react-router";
 import Preloader from "../../../Common/Preloader/Preloader";
-import DemoHint from "../../../Common/DemoHint/DemoHint";
-import { demoAccounts, demoPassword } from "../../../../settings/data";
+import { demoPassword } from "../../../../settings/data";
 
-const LoginForm = () => {
+// Demo: `demoPick` comes from the demo hint above the tabs (Authorization.jsx)
+const LoginForm = ({ demoPick }) => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
@@ -20,11 +20,12 @@ const LoginForm = () => {
     const { register, handleSubmit, formState: { errors }, setError, clearErrors, setValue } = useForm();
 
     // Demo: a click on a demo account fills the form; the two login steps stay as they are
-    const fillDemoAccount = (email) => {
+    useEffect(() => {
+        if (!demoPick) return;
         clearErrors();
-        setValue("email", email);
+        setValue("email", demoPick.email);
         setValue("password", demoPassword);
-    };
+    }, [demoPick, clearErrors, setValue]);
 
     const onSubmit = async (data) => {
         setIsLoading(true);
@@ -95,15 +96,6 @@ const LoginForm = () => {
                 </div>
                 <span className={styles.actions__topText}>or</span>
                 <GoogleAuth setIsLoading={setIsLoading} />
-                <DemoHint>
-                    <p>This is a portfolio demo with fictional data. Pick a demo client to fill the form
-                        (password for all: {demoPassword}):</p>
-                    {demoAccounts.map((account) => (
-                        <button key={account.email} type="button" onClick={() => fillDemoAccount(account.email)}>
-                            {account.name} <span>– {account.note}</span>
-                        </button>
-                    ))}
-                </DemoHint>
             </div>
             {isLoading && <Preloader />}
         </form>
