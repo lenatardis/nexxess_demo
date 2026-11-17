@@ -1,10 +1,13 @@
+// Demo fix: these rules used MUI's generated class names (".css-fbo0vx-MuiInputBase-root-…"). Those long names
+// exist only in development – a production build has short hashes – so the live portal showed plain small selects.
+// The stable MUI class names below select the same elements.
 .MuiInputBase-root svg {
   position: absolute;
   right: 9px;
   pointer-events: none;
 }
 
-.MuiInputBase-root .css-w76bbz-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+.MuiInputBase-root .MuiSelect-select.MuiOutlinedInput-input {
   padding: 18px 16px;
 
   p {
@@ -15,14 +18,14 @@
   }
 }
 
-.MuiBox-root .css-fbo0vx-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+.MuiBox-root .MuiInputBase-root.MuiOutlinedInput-root.MuiSelect-root {
   height: 60px;
   width: 170px;
   border: none;
   border-radius: 33px;
 }
 
-.MuiBox-root .css-1ll44ll-MuiOutlinedInput-notchedOutline {
+.MuiBox-root .MuiSelect-root .MuiOutlinedInput-notchedOutline {
   border: none;
 }
 
@@ -40,7 +43,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .MuiBox-root .css-fbo0vx-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+  .MuiBox-root .MuiInputBase-root.MuiOutlinedInput-root.MuiSelect-root {
     height: 40px;
   }
 }

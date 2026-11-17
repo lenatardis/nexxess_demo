@@ -178,8 +178,10 @@ body:has(.popup) {
   }
 }
 
+// Demo fix: was MUI's development-only class name ".css-1l5xwdx-MuiButtonBase-root-MuiPaginationItem-root",
+// which a production build does not have
 #root {
-  .css-1l5xwdx-MuiButtonBase-root-MuiPaginationItem-root {
+  .MuiButtonBase-root.MuiPaginationItem-root {
     margin: 0;
     font-size: 22px;
     color: #0A1329;
@@ -188,11 +190,11 @@ body:has(.popup) {
     border-radius: 50%;
   }
 
-  .css-1l5xwdx-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+  .MuiButtonBase-root.MuiPaginationItem-root.Mui-selected {
     background-color: #fff;
   }
 
-  .css-1l5xwdx-MuiButtonBase-root-MuiPaginationItem-root:hover {
+  .MuiButtonBase-root.MuiPaginationItem-root:hover {
     background-color: rgba(255, 255, 255, 0.3);
   }
 }
