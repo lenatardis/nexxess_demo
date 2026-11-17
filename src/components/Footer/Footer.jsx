@@ -22,7 +22,8 @@ const Footer = () => {
                 </div>
                 <div className={styles.footer__social}>
                     <a href="https://www.facebook.com/nexxessbusinessadvisors" target="_blank" className={styles.fb}></a>
-                    <a href="https://x.com/nexxessintl" target="_blank" className={styles.x}></a>
+                    {/* Demo: the company's X account now shows a private person's profile – a neutral business account instead */}
+                    <a href="https://x.com/XBusiness" target="_blank" className={styles.x}></a>
                     <a href="https://www.linkedin.com/company/nexxess/" target="_blank" className={styles.linkedIn}></a>
                     <a href="https://www.youtube.com/@nexxess" target="_blank" className={styles.youtube}></a>
                 </div>
