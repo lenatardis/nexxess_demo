@@ -6,6 +6,7 @@ import {BrowserRouter} from "react-router-dom"
 
 import {store} from './store/store';
 import {startMockBackend} from './mocks/browser';
+import {startVersionCheck} from './utils/versionCheck';
 
 const basePath = process.env.PUBLIC_URL;
 
@@ -15,6 +16,9 @@ if (basePath && window.location.pathname === basePath) {
     // itself; the dev server and other static hosts do not.
     window.location.replace(`${basePath}/${window.location.search}${window.location.hash}`);
 } else {
+    // Demo build: a tab running an outdated bundle reloads to the deployed one (src/utils/versionCheck.js)
+    startVersionCheck();
+
     // Demo: the mock backend must be running before the app's first request (profile check in App.jsx)
     startMockBackend()
         .catch((error) => console.error('Mock backend failed to start:', error))
