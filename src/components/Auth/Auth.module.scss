@@ -18,6 +18,15 @@
   }
 }
 
+// Demo fix: between the phone styles (≤ 768px) and the full 890px box plus margins, the login / registration
+// cards touched both edges of the screen
+@media only screen and (min-width: 769px) and (max-width: 937px) {
+  .auth {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .logo {
     margin-bottom: 32px;
