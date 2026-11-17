@@ -124,13 +124,20 @@
   }
 }
 
+// Demo fix: the red of "not completed" in the trust progress bars
+.status.statusUnpaid {
+  background-color: #F17C7C;
+}
+
 @media screen and (max-width: 768px) {
   .contentList {
     height: 40px;
     div {
       p {
         font-size: 10px;
-        line-height: 29px;
+        // Demo fix: was 29px – a date wrapped to a second line fell outside the 40px row and lost its year
+        line-height: 12px;
+        text-align: center;
 
         &.status {
           padding: 4px 8px;

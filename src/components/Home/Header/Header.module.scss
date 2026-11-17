@@ -401,6 +401,18 @@
 
 
 @media only screen and (max-width: 768px) {
+  // Demo fix: the popup hung 100px past the bell and was cut off at the left edge of a phone screen;
+  // here it is pinned to the right edge of the screen and never wider than the screen
+  .notificationPopup {
+    position: fixed;
+    top: 66px;
+    right: 16px;
+    left: auto;
+    width: calc(100vw - 32px);
+    max-width: 400px;
+    box-sizing: border-box;
+  }
+
   .notificationCount {
     width: 13.5px;
     height: 13.5px;

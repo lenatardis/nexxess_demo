@@ -104,7 +104,7 @@ const MyPurchases = () => {
             ) : (
                 <div>
                     {list && list.length ? (
-                        <Packages list={list}/>
+                        <Packages list={list} isPurchases/>
                     ) : <NoItems/>}
                 </div>
             )}

@@ -48,7 +48,8 @@ const AccordionInvoice = ({item}) => {
                     <p>{item.price}</p>
                 </div>
                 <div>
-                    <p className={styles.status}>
+                    {/* Demo fix: "Unpaid" was green like "Paid" */}
+                    <p className={`${styles.status} ${item.status === 'Unpaid' ? styles.statusUnpaid : ''}`}>
                         <span>{item.status}</span>
                     </p>
                 </div>
