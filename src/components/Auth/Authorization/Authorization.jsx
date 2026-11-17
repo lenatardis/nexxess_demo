@@ -15,7 +15,7 @@ const Authorization = () => {
 
     return (
         <div className={styles.authorization}>
-            {isLogin && (
+            {isLogin ? (
                 <DemoHint>
                     <p>This is a portfolio demo with fictional data. Pick a demo client to fill the form:</p>
                     {demoAccounts.map((account) => (
@@ -23,6 +23,11 @@ const Authorization = () => {
                             {account.name} <span>– {account.note}</span>
                         </button>
                     ))}
+                </DemoHint>
+            ) : (
+                <DemoHint>
+                    <p>This is a portfolio demo. Use made-up details – the account is kept only in this browser
+                        and nothing is sent anywhere.</p>
                 </DemoHint>
             )}
             <AuthChanger isLogin={isLogin} setIsLogin={setIsLogin}/>
