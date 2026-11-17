@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# Nexxess Client Portal – demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The client portal of Nexxess, a trust marketplace. A customer logs in, follows how their trust is being set up step by step, buys service packages and trusts, sees invoices and shared files, reads the company feed and FAQ, and talks to their consultant.
 
-## Available Scripts
+**Live demo: https://lenatardis.github.io/nexxess_demo/**
 
-In the project directory, you can run:
+This is a frontend-only build of the portal. The frontend is the production code. The backend (a REST API connected to a CRM) is replaced by a mock that runs inside the browser, so the demo needs no server and no account.
 
-### `npm start`
+## Demo logins
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+| Customer | E-mail | Stage |
+|---|---|---|
+| Olivia Bennett | `olivia.bennett@example.com` | just started |
+| Daniel Harper | `daniel.harper@example.com` | trust in progress (two trusts) |
+| Margaret Collins | `margaret.collins@example.com` | trust completed |
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Password for all three: `DemoPortal2026`
+- Verification code (the second login step, normally sent by e-mail): `123456`
 
-### `npm test`
+You don't need to copy these. The login screen lists the three customers in a "Demo" box, and clicking one fills in the e-mail and password. The verification screen shows the code the same way. "Continue with Google" logs in as Daniel Harper without contacting Google. You can also register a new account, and it starts with a copy of Daniel's sample data.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## What you can try
 
-### `npm run build`
+- **Feed**: company news and consultant posts with attachments.
+- **Trust Process**: the eight stages of a trust (completed, running, upcoming), with checklists and consultant comments.
+- **Packages / Trusts**: the catalogue. "Buy" creates an invoice and opens a demo payment page. "Pay" makes it a purchase, and "Cancel" leaves it unpaid.
+- **Invoices**: search, filters, sorting, pagination. A click on a row opens a PDF invoice that is generated in the browser.
+- **My Purchases, My Files, FAQ**, the global search in the header, notifications (the bell icon).
+- **Personal Information**: edit the profile, upload a photo, change the password (the new password works at the next login).
+- **Chat**: the consultant cards and "Request Help" open a chat with canned replies.
+- **Logged out**: "Forgot password" (the reset link appears on screen instead of being e-mailed), registration with the consultant picker, login by a link (`/user_auth?user=2`).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## How the backend is mocked
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [MSW (Mock Service Worker)](https://mswjs.io/) 2 intercepts the app's requests to `/api/v1/…` and answers them in the browser (`src/mocks/handlers/`). The API modules in `src/api/` are unchanged. They only point to a same-origin base URL.
+- The sample data (`src/mocks/data/`) is invented: people, companies, consultants, files. Dates are counted back from the day you open the demo, so it never looks out of date.
+- Changes are stored in your browser's `localStorage` under the `nexxess-demo:` prefix. Each visitor has their own copy. To start over, clear the site data in the browser (or remove the `nexxess-demo:*` keys and the `accessNexxessToken` / `refreshNexxessToken` keys).
+- Access tokens expire after 5 minutes, so the app's own token refresh and retry logic runs for real.
+- A short artificial delay keeps the loading skeletons visible.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Demo-only additions to the UI: the "Demo" hint boxes, the payment page, the chat window (it replaces a third-party live chat widget), and a notice page for the Terms and Privacy links. The phone number and e-mail in the footer are fictional.
 
-### `npm run eject`
+## Stack
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+React 19, Create React App 5, React Router 7, Redux Toolkit, MUI 6, react-hook-form + yup, SCSS modules, DOMPurify; MSW 2 for the mock backend. It is deployed to GitHub Pages with GitHub Actions (`.github/workflows/deploy.yml`).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Run locally
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm ci --legacy-peer-deps   # one dependency still declares React <= 18 as a peer
+npm start                   # http://localhost:3000/nexxess_demo/
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+`CI=false npm run build` makes a production build in `build/`. The mock runs in the production build too, because it is the backend.
