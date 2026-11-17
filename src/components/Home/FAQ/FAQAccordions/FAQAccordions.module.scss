@@ -14,6 +14,12 @@
     cursor: pointer;
     display: flex;
     justify-content: space-between;
+    // Demo fix: a question that filled the line ran into the arrow
+    column-gap: 12px;
+
+    img {
+      flex-shrink: 0;
+    }
 
     p {
       font-size: 16px;
