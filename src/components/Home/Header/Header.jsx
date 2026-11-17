@@ -7,10 +7,11 @@ import logo from '../../../assets/icons/logo.svg';
 import Logout from "./Logout/Logout";
 import Notifications from "./Notifications/Notifications";
 import GlobalSearch from "./GlobalSearch/GlobalSearch";
-import {isPhoneLayout} from "../../../settings/layout";
+import usePhoneLayout from "../../../hooks/usePhoneLayout";
 
 const Header = () => {
     const navigate = useNavigate();
+    const isPhone = usePhoneLayout();
 
     return (
         <div className={styles.headerWrapper}>
@@ -23,7 +24,7 @@ const Header = () => {
                     <Notifications />
                     <div className={`${styles.header__menuItem} ${styles.itemBtn}`} title="Profile">
                         <button onClick={() => navigate('/personalInformation')}  className={styles.btnProfile}>
-                            <img src={!isPhoneLayout() ? userIcon : userIconMob} alt="user"/>
+                            <img src={!isPhone ? userIcon : userIconMob} alt="user"/>
                         </button>
                     </div>
                     <Logout />

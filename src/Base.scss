@@ -2,6 +2,15 @@
 // (≤ 1280px, src/settings/layout.js). From ~1516px up this is the original: 388px side columns 40px from the
 // edge, 50px gaps. Narrower, the gaps go down to 24px and then the side columns to 300px, so the content
 // keeps about 560px.
+// Demo fix: in the three-column layout (above the phone frame, src/settings/layout.js) always keep the scrollbar's
+// place. Short pages have no scrollbar and long ones do, and a popup that stops the page scrolling hides it – each
+// time the fixed side columns moved sideways by its width. Narrower layouts have no fixed columns and stay as before.
+@media only screen and (min-width: 1281px) {
+  html {
+    scrollbar-gutter: stable;
+  }
+}
+
 :root {
   --side-edge: 40px;
   --side-gap: clamp(24px, calc((100vw - 1416px) / 2), 50px);

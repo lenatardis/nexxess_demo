@@ -105,7 +105,10 @@
 }
 
 .status {
-  padding: 4px 26px;
+  // Demo fix: one width for every status (was padding 4px 26px – "Unpaid" came out wider than "Paid" and, in a
+  // narrow column, reached the row's end); 80px leaves room in the narrowest column (553px content / 6)
+  width: 80px;
+  padding: 4px 0;
   background-color: #6AC8A2;
   border-radius: 22px;
   display: flex;
@@ -140,7 +143,8 @@
         text-align: center;
 
         &.status {
-          padding: 4px 8px;
+          width: 48px;
+          padding: 4px 0;
           span {
             font-size: 10px;
             line-height: 10px;

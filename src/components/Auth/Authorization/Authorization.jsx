@@ -16,8 +16,9 @@ const Authorization = () => {
     return (
         <div className={styles.authorization}>
             {isLogin ? (
-                <DemoHint>
-                    <p>This is a portfolio demo with fictional data. Pick a demo client to fill the form:</p>
+                <DemoHint className={styles.demoHint}>
+                    <p>This is a portfolio demo of the Nexxess client portal (a trust marketplace and business advisory
+                        service) with fictional data. Pick a demo client to fill the form:</p>
                     {demoAccounts.map((account) => (
                         <button key={account.email} type="button" onClick={() => setDemoPick({email: account.email})}>
                             {account.name} <span>– {account.note}</span>
@@ -25,8 +26,9 @@ const Authorization = () => {
                     ))}
                 </DemoHint>
             ) : (
-                <DemoHint>
-                    <p>This is a portfolio demo. Use made-up details – the account is kept only in this browser
+                <DemoHint className={styles.demoHint}>
+                    <p>This is a portfolio demo of the Nexxess client portal (a trust marketplace and business advisory
+                        service) with fictional data. Use made-up details: the account is kept only in this browser
                         and nothing is sent anywhere.</p>
                 </DemoHint>
             )}

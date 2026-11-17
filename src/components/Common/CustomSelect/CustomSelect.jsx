@@ -2,11 +2,21 @@ import FormControl from "@mui/material/FormControl";
 import Box from "@mui/material/Box";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import './CustomSelect.scss';
 
 
 const CustomSelect = ({selectList, value, setValue}) => {
+    // Demo fix: MUI locks the page scroll while the menu is open and so hides the scrollbar – the fixed side columns
+    // jumped sideways. Without the lock the page could scroll away under the open menu, so it closes on a scroll.
+    const [open, setOpen] = useState(false);
+
+    useEffect(() => {
+        if (!open) return undefined;
+        const close = () => setOpen(false);
+        window.addEventListener('scroll', close, {passive: true});
+        return () => window.removeEventListener('scroll', close);
+    }, [open]);
 
     return (
         <Box>
@@ -20,6 +30,10 @@ const CustomSelect = ({selectList, value, setValue}) => {
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={value.name}
+                    open={open}
+                    onOpen={() => setOpen(true)}
+                    onClose={() => setOpen(false)}
+                    MenuProps={{disableScrollLock: true}}
 
                     sx={{
 

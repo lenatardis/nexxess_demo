@@ -52,4 +52,9 @@
   background-color: #6AC8A2;
   z-index: 2;
   justify-content: flex-start;
+
+  // Demo fix: the percentage sat on the bar's left edge (the shared padding is on the right)
+  span {
+    padding: 2px 0 0 6px;
+  }
 }

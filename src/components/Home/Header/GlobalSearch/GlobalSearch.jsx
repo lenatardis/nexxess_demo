@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState, useCallback, useMemo } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import styles from "../Header.module.scss";
 import searchIcon from "../../../../assets/icons/search.svg";
 import searchIconMob from "../../../../assets/icons/searchMob.svg";
 import { getAccessToken } from "../../../../api/localStorage";
 import { getSearchResult } from "../../../../api/header";
 import GlobalSearchResult from "./GlobalSearchResult";
-import {isPhoneLayout} from "../../../../settings/layout";
+import usePhoneLayout from "../../../../hooks/usePhoneLayout";
 
 const useDebounce = (callback, delay) => {
     const timeoutRef = useRef(null);
@@ -45,7 +45,8 @@ const GlobalSearch = () => {
         setList([]);
     }, []);
 
-    const iconSrc = useMemo(() => (!isPhoneLayout() ? searchIcon : searchIconMob), []);
+    const isPhone = usePhoneLayout();
+    const iconSrc = !isPhone ? searchIcon : searchIconMob;
 
     return (
         <div

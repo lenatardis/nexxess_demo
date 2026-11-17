@@ -29,12 +29,18 @@ import MyFiles from "./MyFiles/MyFiles";
 import DemoPayment from "./DemoPayment/DemoPayment";
 import LegalNotice from "./LegalNotice/LegalNotice";
 import DemoChat from "./DemoChat/DemoChat";
-import {isPhoneLayout} from "../../settings/layout";
+import usePhoneLayout from "../../hooks/usePhoneLayout";
 
 const Home = () => {
     const dispatch = useAppDispatch();
     const location = useLocation();
     const [menuActives, setMenuActives] = useState({navigation: false, communication: false});
+    const isPhone = usePhoneLayout();
+
+    // Demo: a slide-out menu left open on a phone-wide window is closed when the window becomes desktop-wide
+    useEffect(() => {
+        if (!isPhone) setMenuActives({navigation: false, communication: false});
+    }, [isPhone]);
 
     useEffect(() => {
         const fetchData = async (page = 1) => {
@@ -77,7 +83,7 @@ const Home = () => {
         <>
         <div className={styles.home}>
             <Header />
-            {isPhoneLayout() && (
+            {isPhone && (
                 <MobSubHeader setMenuActives={setMenuActives} menuActives={menuActives} />
             )}
             <div className={styles.centralWrapper}>

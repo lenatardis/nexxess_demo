@@ -14,9 +14,10 @@
   &__input {
     background-color: #E4E7E9;
     border-radius: 33px;
-    height: 60px;
+    // Demo: the auth pages set smaller values (Auth.module.scss); the profile keeps the original 60px / 18px
+    height: var(--input-height, 60px);
     color: #0A1329;
-    font-size: 18px;
+    font-size: var(--input-font-size, 18px);
     font-weight: 700;
     line-height: 24px;
     padding: 0 20px;
@@ -40,7 +41,7 @@
 @media screen and (max-width: 768px) {
   .inputBox {
     &__input {
-      height: 40px;
+      height: var(--input-height, 40px);
     }
 
     label {

@@ -138,6 +138,45 @@
   }
 }
 
+// Demo: the demo note above the tabs is as wide as the form on desktop (DemoHint's own 610px made it three lines
+// of text and two rows of buttons, pushing the Google button below the fold)
+@media only screen and (min-width: 769px) {
+  .authorization .demoHint {
+    max-width: none;
+    margin-bottom: 20px;
+  }
+}
+
+// Demo: above the phone layout "Log In", "or" and "Continue with Google" share one line (were stacked, the
+// Google button ended up below the fold); the fields' height matches (--input-height in Auth.module.scss)
+@media only screen and (min-width: 769px) {
+  .actions {
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 16px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+
+    &__topText {
+      margin: 0;
+    }
+  }
+
+  .login {
+    width: 250px;
+    margin-top: 0;
+  }
+
+  .login :global(.darkYellowBtn) {
+    height: var(--input-height, 60px);
+  }
+
+  .googleAuth {
+    height: var(--input-height, 45px);
+    margin-bottom: 0;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .authorization {
     padding: 0 16px;

@@ -123,7 +123,8 @@ const ConsultantsList = ({ consultant, setConsultant }) => {
                             "& .MuiInputBase-root": {
                                 borderRadius: "33px",
                                 backgroundColor: "#E4E7E9",
-                                height: "60px",
+                                // Demo: same height as the other fields of the page (Auth.module.scss)
+                                height: "var(--input-height, 60px)",
                                 border: "none",
                                 display: "flex",
                                 alignItems: "center",
@@ -140,7 +141,7 @@ const ConsultantsList = ({ consultant, setConsultant }) => {
                             },
                             "& .MuiInputBase-input": {
                                 color: "#0A1329",
-                                fontSize: "18px",
+                                fontSize: "var(--input-font-size, 18px)",
                                 fontWeight: "700",
                                 lineHeight: "24px",
                                 padding: "12px 16px",
