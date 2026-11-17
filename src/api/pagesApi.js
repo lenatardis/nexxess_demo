@@ -113,3 +113,9 @@ export const getDemoPayment = (token, invoiceId) =>
 
 export const payDemoInvoice = (token, invoiceId) =>
     postRequest(`${devUrl}invoices/${invoiceId}/payment/`, token, {}, payDemoInvoice, invoiceId);
+
+// Demo only: the local chat that stands in for the Bitrix24 live chat widget of the original.
+export const getDemoChat = (token) => getRequest(`${devUrl}chat/messages/`, token, getDemoChat);
+
+export const sendDemoChat = (token, text) =>
+    postRequest(`${devUrl}chat/messages/`, token, {text}, sendDemoChat, text);

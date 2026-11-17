@@ -8,6 +8,7 @@ import InfoIcon from "../../assets/icons/info.svg";
 import LinkIcon from "../../assets/icons/link.svg";
 import {CopyToClipboard} from "react-copy-to-clipboard/src";
 import ContactInformation from "../Home/LeftBox/ContactInformation/ContactInformation";
+import {Link} from "react-router-dom";
 
 
 const Footer = () => {
@@ -17,7 +18,7 @@ const Footer = () => {
                 <div className={styles.footer__copyrightBox}>
                     <p className={styles.footer__copyright}>Copyright 2000-2025, Nexxess International, <br/>
                         All Rights Reserved</p>
-                    <p className={styles.footer__privacy}><a href="https://nexxess.com/terms_of_service">TERMS</a> AND <a href="https://nexxess.com/privacy_policy">PRIVACY</a></p>
+                    <p className={styles.footer__privacy}><Link to="/terms">TERMS</Link> AND <Link to="/privacy">PRIVACY</Link></p>
                 </div>
                 <div className={styles.footer__social}>
                     <a href="https://www.facebook.com/nexxessbusinessadvisors" target="_blank" className={styles.fb}></a>

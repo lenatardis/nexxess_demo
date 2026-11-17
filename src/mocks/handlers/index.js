@@ -1,5 +1,6 @@
 import { http } from 'msw';
 import { authHandlers } from './auth';
+import { chatHandlers } from './chat';
 import { headerHandlers } from './header';
 import { pagesHandlers } from './pages';
 import { profileHandlers } from './profile';
@@ -17,4 +18,4 @@ const notMockedYet = http.all(
     }),
 );
 
-export const handlers = [...authHandlers, ...profileHandlers, ...headerHandlers, ...rightBarHandlers, ...pagesHandlers, notMockedYet];
+export const handlers = [...authHandlers, ...profileHandlers, ...headerHandlers, ...rightBarHandlers, ...pagesHandlers, ...chatHandlers, notMockedYet];

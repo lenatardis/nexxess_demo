@@ -13,10 +13,13 @@
 //     reached a mock handler: mocking is re-activated and the request is sent once more. This also covers the
 //     first visit, where Chrome restarts the freshly installed worker about a second after it took control
 //     (seen 2026-11-16 in the production build: the first request after that restart went to the static host);
+//   - an API request that fails outright (the worker was stopped while it held the request – also seen on a
+//     first visit) is sent once more in the same way;
 //   - if the second answer is not a mock answer either, a notice asks to reload the page.
 
 const API_PATH = '/api/v1/';
 const NOTICE_ID = 'demo-msw-notice';
+const FAILED_RETRY_PAUSE_MS = 400;
 const NOTICE_TEXT = 'Sorry, this demo runs on MSW (Mock Service Worker) and lost its connection after a pause. '
     + 'Reload the page to load the data.';
 
@@ -127,7 +130,22 @@ export const keepMocking = () => {
 
         // a Request object can be sent only once: keep a copy for the retry
         const retryInput = input instanceof Request ? input.clone() : input;
-        const response = await originalFetch(input, init);
+        let response;
+        try {
+            response = await originalFetch(input, init);
+        } catch (error) {
+            // The worker was stopped while it held the request (seen on a first visit: requests sent in the
+            // second in which Chrome restarts the fresh worker fail with "Failed to fetch"): send it again,
+            // twice at most – the worker may still be restarting during the first retry.
+            try {
+                await reactivateAndWait();
+                return await originalFetch(retryInput instanceof Request ? retryInput.clone() : retryInput, init);
+            } catch {
+                await new Promise((resolve) => setTimeout(resolve, FAILED_RETRY_PAUSE_MS));
+                await reactivateAndWait();
+                return originalFetch(retryInput, init);
+            }
+        }
         if (isMockAnswer(response)) return response;
 
         // The answer came from the static host, so the request never reached a mock handler:

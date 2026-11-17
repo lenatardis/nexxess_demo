@@ -27,6 +27,8 @@ import {setNewNotifications} from "../../store/account-slice";
 import {getCountNotifications} from "../../api/header";
 import MyFiles from "./MyFiles/MyFiles";
 import DemoPayment from "./DemoPayment/DemoPayment";
+import LegalNotice from "./LegalNotice/LegalNotice";
+import DemoChat from "./DemoChat/DemoChat";
 
 const Home = () => {
     const dispatch = useAppDispatch();
@@ -95,6 +97,8 @@ const Home = () => {
                         <Route path={'/faq'} element={<FAQ />}/>
                         <Route path={'/personalInformation'} element={<EditProfile />}/>
                         <Route path={'/demoPayment'} element={<DemoPayment />}/>
+                        <Route path={'/terms'} element={<LegalNotice title={'Terms of Service'} />}/>
+                        <Route path={'/privacy'} element={<LegalNotice title={'Privacy Policy'} />}/>
                     </Routes>
                 </div>
                 <RightBox isActive={menuActives.communication} setMenuActives={setMenuActives} />
@@ -102,6 +106,7 @@ const Home = () => {
 
         </div>
             <Footer />
+            <DemoChat />
             </>
     )
 }
